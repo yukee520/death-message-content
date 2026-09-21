@@ -1,0 +1,322 @@
+{
+  "id": "case-001-missing-call",
+  "version": 1,
+  "title": "The Midnight Call",
+  "subtitle": "A man died while on the phone. The line is still open.",
+  "intro": "凌晨 2:47，你的手机响了。来电显示是一个陌生号码。你接起电话，听到的是一个男人断断续续的呼吸声——然后是一句没说完的话。第二天你才知道，号码的主人昨晚已经死了。",
+  "difficulty": "easy",
+  "tags": ["horror", "mystery"],
+  "startChapterId": "ch1",
+  "suspects": [
+    {
+      "id": "unknown",
+      "name": "Unknown Caller",
+      "description": "The voice on the other end. Distorted, breathless, desperate.",
+      "relation": "Caller"
+    },
+    {
+      "id": "wife",
+      "name": "Mira Holt",
+      "description": "The victim's wife. Calm. Too calm.",
+      "relation": "Spouse",
+      "isGuilty": false
+    },
+    {
+      "id": "colleague",
+      "name": "Daniel Reyes",
+      "description": "The victim's business partner. Nervous, evasive.",
+      "relation": "Colleague",
+      "isGuilty": true
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue-voice",
+      "title": "The Voice Recording",
+      "description": "A 12-second voicemail left at 2:47 AM. Background noise includes a faint ticking sound — a clock, or something else.",
+      "icon": "mic-outline"
+    },
+    {
+      "id": "clue-clock",
+      "title": "The Broken Clock",
+      "description": "A wall clock in the victim's office stopped at 2:47. The glass is cracked from the inside.",
+      "icon": "time-outline"
+    },
+    {
+      "id": "clue-debt",
+      "title": "A Hidden Debt",
+      "description": "The victim owed Daniel Reyes a large sum. The papers were signed three days before the death.",
+      "icon": "document-text-outline"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "ch1",
+      "title": "Chapter 1 — The Call",
+      "suspects": [
+        {
+          "id": "unknown",
+          "name": "Unknown Caller",
+          "description": "The voice on the other end.",
+          "relation": "Caller"
+        }
+      ],
+      "messages": [
+        {
+          "id": "m1",
+          "type": "system",
+          "text": "02:47 AM. Your phone rings. Unknown number."
+        },
+        {
+          "id": "m2",
+          "type": "incoming",
+          "senderId": "unknown",
+          "text": "……你……听得见我吗……",
+          "delayMs": 1600,
+          "mood": "fearful"
+        },
+        {
+          "id": "m3",
+          "type": "incoming",
+          "senderId": "unknown",
+          "text": "……别挂……求你了……它在……在我身后……",
+          "delayMs": 2200,
+          "mood": "fearful"
+        },
+        {
+          "id": "m4",
+          "type": "clue",
+          "clueId": "clue-voice",
+          "text": "You saved the voicemail.",
+          "delayMs": 1400
+        },
+        {
+          "id": "m5",
+          "type": "incoming",
+          "senderId": "unknown",
+          "text": "（信号中断）",
+          "delayMs": 1200,
+          "mood": "neutral"
+        }
+      ],
+      "choices": [
+        {
+          "id": "c1",
+          "text": "回拨过去",
+          "nextChapterId": "ch2a",
+          "unlockClues": ["clue-clock"]
+        },
+        {
+          "id": "c2",
+          "text": "报警",
+          "nextChapterId": "ch2b"
+        },
+        {
+          "id": "c3",
+          "text": "装作没听见，继续睡",
+          "nextChapterId": "ch2c"
+        }
+      ],
+      "llmEnabled": true,
+      "llmPersona": "你是一个刚刚死去的男人，声音颤抖、语无伦次，似乎有什么东西一直在追你。你对玩家既恐惧又依赖，希望他们能帮你弄清楚发生了什么。",
+      "allowFreeInput": false
+    },
+    {
+      "id": "ch2a",
+      "title": "Chapter 2 — The Redial",
+      "suspects": [
+        {
+          "id": "unknown",
+          "name": "Unknown Caller",
+          "description": "The voice on the other end.",
+          "relation": "Caller"
+        }
+      ],
+      "messages": [
+        {
+          "id": "m10",
+          "type": "system",
+          "text": "You press redial. It rings once. Twice. Someone picks up."
+        },
+        {
+          "id": "m11",
+          "type": "incoming",
+          "senderId": "unknown",
+          "text": "……你回来了……我就知道你会回来……",
+          "delayMs": 1800,
+          "mood": "fearful"
+        },
+        {
+          "id": "m12",
+          "type": "clue",
+          "clueId": "clue-clock",
+          "text": "Background: a clock ticking. It stops.",
+          "delayMs": 1400
+        }
+      ],
+      "choices": [
+        {
+          "id": "c4",
+          "text": "问他你是谁",
+          "nextChapterId": "ch3"
+        },
+        {
+          "id": "c5",
+          "text": "问他在哪",
+          "nextChapterId": "ch3"
+        }
+      ],
+      "llmEnabled": true,
+      "llmPersona": "你是一个刚死去的男人，正在通过电话与玩家沟通。你身处一个黑暗的、时间停滞的地方。每当玩家问起你的位置或身份，你会越来越恐惧，并暗示『它』正在靠近。",
+      "allowFreeInput": true
+    },
+    {
+      "id": "ch3",
+      "title": "Chapter 3 — The Truth",
+      "suspects": [
+        {
+          "id": "colleague",
+          "name": "Daniel Reyes",
+          "description": "The victim's business partner.",
+          "relation": "Colleague"
+        }
+      ],
+      "messages": [
+        {
+          "id": "m20",
+          "type": "system",
+          "text": "The line goes dead. A moment later, a text message arrives from a different number."
+        },
+        {
+          "id": "m21",
+          "type": "incoming",
+          "senderId": "colleague",
+          "text": "别再查了。有些事，知道得越少越好。",
+          "delayMs": 1600,
+          "mood": "hostile"
+        },
+        {
+          "id": "m22",
+          "type": "clue",
+          "clueId": "clue-debt",
+          "text": "You recognize the sender: Daniel Reyes.",
+          "delayMs": 1400
+        }
+      ],
+      "choices": [
+        {
+          "id": "c6",
+          "text": "指认 Daniel Reyes",
+          "endingId": "ending-true"
+        },
+        {
+          "id": "c7",
+          "text": "指认 Mira Holt",
+          "endingId": "ending-wrong-wife"
+        }
+      ],
+      "llmEnabled": true,
+      "llmPersona": "你是 Daniel Reyes，死者的合伙人。你参与了谋杀，现在非常紧张。你试图用威胁和诱导让玩家停止调查。绝不承认罪行，但如果被逼问细节会露出破绽。",
+      "allowFreeInput": true
+    },
+    {
+      "id": "ch2b",
+      "title": "Chapter 2 — The Police",
+      "suspects": [
+        {
+          "id": "wife",
+          "name": "Mira Holt",
+          "description": "The victim's wife.",
+          "relation": "Spouse"
+        }
+      ],
+      "messages": [
+        {
+          "id": "m30",
+          "type": "system",
+          "text": "You called the police. They arrived, took a statement, and left. Two hours later, a message arrives."
+        },
+        {
+          "id": "m31",
+          "type": "incoming",
+          "senderId": "wife",
+          "text": "你是谁？为什么警察会来找我？",
+          "delayMs": 1800,
+          "mood": "neutral"
+        }
+      ],
+      "choices": [
+        {
+          "id": "c8",
+          "text": "解释昨晚的电话",
+          "nextChapterId": "ch3"
+        }
+      ],
+      "llmEnabled": true,
+      "llmPersona": "你是 Mira Holt，死者的妻子。你表现得冷静、理性，但对丈夫的死其实非常在意。你不会轻易相信陌生人，但如果对方提供真实线索，你会逐渐放下戒备。",
+      "allowFreeInput": true
+    },
+    {
+      "id": "ch2c",
+      "title": "Chapter 2 — Silence",
+      "suspects": [
+        {
+          "id": "unknown",
+          "name": "Unknown Caller",
+          "description": "The voice.",
+          "relation": "Caller"
+        }
+      ],
+      "messages": [
+        {
+          "id": "m40",
+          "type": "system",
+          "text": "You put the phone down. It rings again. And again. And again."
+        },
+        {
+          "id": "m41",
+          "type": "incoming",
+          "senderId": "unknown",
+          "text": "……你为什么……不接……",
+          "delayMs": 1600,
+          "mood": "sad"
+        },
+        {
+          "id": "m42",
+          "type": "incoming",
+          "senderId": "unknown",
+          "text": "……现在……它来找你了……",
+          "delayMs": 2200,
+          "mood": "fearful"
+        }
+      ],
+      "choices": [
+        {
+          "id": "c9",
+          "text": "接起电话",
+          "nextChapterId": "ch2a"
+        }
+      ],
+      "llmEnabled": true,
+      "llmPersona": "你是死者的残影，被玩家忽视后变得更加绝望和怨毒。你的语气混杂着恐惧和责备。",
+      "allowFreeInput": false
+    }
+  ],
+  "endings": [
+    {
+      "id": "ending-true",
+      "title": "The Truth Unearthed",
+      "description": "你指认了 Daniel Reyes。在警方的审讯下，他最终崩溃承认了因债务纠纷杀害合作伙伴的事实。死者终于可以安息。案子结了——但你知道，有些声音，不会因为结案而消失。",
+      "rank": "S",
+      "isTrueEnding": true
+    },
+    {
+      "id": "ending-wrong-wife",
+      "title": "The Wrong Accusation",
+      "description": "你指认了 Mira Holt。她沉默地看着你，没有辩解。三天后，警方找到了真正的凶手——Daniel Reyes。但 Mira 已经搬离了这座城市。你再也打不通那个号码了。",
+      "rank": "D",
+      "isTrueEnding": false
+    }
+  ],
+  "updatedAt": "2026-09-21T00:00:00Z"
+}
