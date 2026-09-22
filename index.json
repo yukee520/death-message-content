@@ -4,11 +4,11 @@
   "cases": [
     {
       "id": "case-001-missing-call",
-      "title": "The Midnight Call",
-      "subtitle": "A man died while on the phone. The line is still open.",
+      "title": "午夜来电",
+      "subtitle": "一个男人死在通话中，电话线至今未断。",
       "coverUrl": "",
       "difficulty": "easy",
-      "tags": ["horror", "mystery"],
+      "tags": ["恐怖", "推理"],
       "minAppVersion": "1.0.0",
       "version": 1,
       "packageUrl": "https://raw.githubusercontent.com/yukee520/death-message-content/main/cases/case-001.json",
